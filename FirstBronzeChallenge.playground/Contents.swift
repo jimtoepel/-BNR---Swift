@@ -2,9 +2,7 @@
 
 import Cocoa
 
-var str = "Hello, playground"
-
-str += "!"
+var str = "Toepel"
 
 print(str)
 
