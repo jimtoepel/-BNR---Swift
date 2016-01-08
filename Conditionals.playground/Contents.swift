@@ -2,18 +2,18 @@
 
 import Cocoa
 
-var population: Int = 131422
+var population: Int = 600000
 var message: String
 var hasPostOffice: Bool = false
 
 if population < 10000 {
     message = "\(population) is a small town!"
-} else {
-    if population  >= 10000 && population < 50000 {
+} else if population  >= 10000 && population < 50000 {
         message = "\(population) is a medium town!"
-    } else {
+} else if population >= 50000 && population < 100000 {
     message = "\(population) is pretty big!"
-    }
+} else {
+    message = "\(population) is ginormous!"
 }
 
 print(message)
