@@ -46,3 +46,9 @@ case (_, 404):
 default:
     print("All items found.")
 }
+
+
+let age = 19
+if case 18...35 = age where age >= 21 {
+    print("Cool demographic and you can drink!")
+}
