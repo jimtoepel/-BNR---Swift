@@ -30,3 +30,7 @@ let fifthCharacter = playground[end] // 'o'
 
 let range = fromStart ... end
 let firstFive = playground[range] // 'Hello'
+
+
+var playgroundTest = ""
+playgroundTest += "\u{0048}\u{0065}\u{006c}\u{006c}\u{006f}\u{002c}\u{0020}\u{0070}\u{006c}\u{0061}\u{0079}\u{0067}\u{0072}\u{006f}\u{0075}\u{006e}\u{0064}"
