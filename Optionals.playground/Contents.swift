@@ -4,10 +4,14 @@ import Cocoa
 
 var errorCodeString: String?
 errorCodeString = "404"
+var errorDescription: String?
 
 print(errorCodeString)
 
 if let theError = errorCodeString, errorCodeInteger = Int(theError)
     where errorCodeInteger == 404 {
-        print("\(theError):\(errorCodeInteger)")
+        errorDescription = ("\(errorCodeInteger + 200): the requested resource was not found.")
 }
+
+var upCaseErrorDescription = errorDescription?.uppercaseString
+errorDescription
