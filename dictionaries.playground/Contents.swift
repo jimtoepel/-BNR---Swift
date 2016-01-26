@@ -26,3 +26,6 @@ movieRatings.removeValueForKey("Dark City")
 
 movieRatings["Dark City"] = nil
 
+for (key, value) in movieRatings {
+    print("The movie \(key) was rated \(value).")
+}
