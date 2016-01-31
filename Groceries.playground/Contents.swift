@@ -13,12 +13,12 @@ for food in groceryBag {
 let hasTacos = groceryBag.contains("Tacos")
 
 let friendsGroceryBag = Set(["Tacos", "Guac", "Milk", "Oranges"])
-let commonGroceryBag = groceryBag.union(friendsGroceryBag)
+groceryBag.unionInPlace(friendsGroceryBag)
 
-let hasCommonTacos = commonGroceryBag.contains("Tacos")
+let hasCommonTacos = groceryBag.contains("Tacos")
 
 let roomatesGroceryBag = Set(["Apples", "Bananas", "Cereal", "Guac", "Toothpaste"])
-let itemsToReturn = commonGroceryBag.intersect(roomatesGroceryBag)
+groceryBag.intersectInPlace(roomatesGroceryBag)
 
 let yourSecondBag = Set(["Berries", "Yogurt"])
 let roommatesSecondBag = Set(["Grapes", "Honey"])
