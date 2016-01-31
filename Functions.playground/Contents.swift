@@ -70,4 +70,24 @@ print("The odd numbers are \(theSortedNumbers.odds)")
 
 
 
+func grabMiddleName(name: (String, String?, String)) -> String?
+{
+    return name.1
+}
 
+let middleName = grabMiddleName(("James", "Gerard","Toepel"))
+if let theName = middleName {
+    print(theName)
+}
+
+
+func greetByMiddleName(name: (first: String, middle: String?, last: String)) {
+    guard let middleName = name.middle where name.middle?.characters.count <= 4 else {
+        print("Hey there!")
+        return
+    }
+    print("Hey, \(middleName)")
+}
+greetByMiddleName(("Jim", "Danget", "Toepel"))
+
+let evenOddFunction: (([Int]) -> ([Int], [Int]) )
