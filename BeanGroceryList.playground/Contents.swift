@@ -7,8 +7,12 @@ var groceryList = ["green beans", "milk", "black beans", "pinto beans", "apples"
 
 func beanSifter(list: [String]) -> (beans: [String], otherGroceries: [String]){
     
-    let temp = ["Test0", "Test1"]
-    
+    var temp: [String] = []
+    for food in list {
+        if food.hasSuffix("beans") {
+            temp.append(food)
+        }
+    }
     
     return(beans:temp, otherGroceries:list)
 }
