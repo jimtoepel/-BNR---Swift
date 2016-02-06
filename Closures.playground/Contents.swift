@@ -4,8 +4,20 @@ import Cocoa
 
 var volunteerCounts = [1, 3, 40, 32, 2, 53, 77, 13]
 
-func sortAscending(i: Int, j: Int) -> Bool {
-    return i < j
+let volunteersSorted = volunteerCounts.sort { $0 < $1 }
+
+print (volunteersSorted)
+
+
+
+func makeTownGrand() -> (Int, Int) -> Int {
+    func buildRoads(lightsToAdd: Int, toLights: Int) -> Int {
+        return toLights + lightsToAdd
+    }
+    return buildRoads
 }
 
-let volunteersSorted = volunteerCounts.sort(sortAscending)
+var stoplights = 4
+let townPlan = makeTownGrand()
+stoplights = townPlan(4, stoplights)
+print("Knowhere has \(stoplights) stoplights.")
