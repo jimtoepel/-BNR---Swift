@@ -8,16 +8,29 @@ let volunteersSorted = volunteerCounts.sort { $0 < $1 }
 
 print (volunteersSorted)
 
-
-
-func makeTownGrand() -> (Int, Int) -> Int {
-    func buildRoads(lightsToAdd: Int, toLights: Int) -> Int {
-        return toLights + lightsToAdd
+func makeTownGrand(budget: Int, condition: Int -> Bool) -> ((Int, Int) -> Int)? {
+    if condition(budget) {
+        func buildRoads(lightsToAdd: Int, toLights: Int) -> Int {
+            return toLights + lightsToAdd
+        }
+        return buildRoads
+    } else {
+        return nil
     }
-    return buildRoads
+}
+
+func evaluateBudget(budget: Int) -> Bool {
+    return budget > 10000
 }
 
 var stoplights = 4
-let townPlan = makeTownGrand()
-stoplights = townPlan(4, stoplights)
+
+if let townPlan = makeTownGrand(1000, condition: evaluateBudget) {
+    stoplights = townPlan(4, stoplights)
+}
+
+if let newTownPlan = makeTownGrand(15000, condition: evaluateBudget) {
+    stoplights = newTownPlan(4, stoplights)
+}
+
 print("Knowhere has \(stoplights) stoplights.")
