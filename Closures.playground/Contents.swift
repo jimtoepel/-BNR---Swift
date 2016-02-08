@@ -34,3 +34,35 @@ if let newTownPlan = makeTownGrand(15000, condition: evaluateBudget) {
 }
 
 print("Knowhere has \(stoplights) stoplights.")
+
+
+func makeGrowthTracker(forGrowth growth: Int) -> () -> Int {
+    var totalGrowth = 0
+    func growthTracker() -> Int {
+        totalGrowth += growth
+        return totalGrowth
+    }
+    return growthTracker
+}
+var currentPopulation = 5422
+let growBy500 = makeGrowthTracker(forGrowth: 500)
+
+growBy500()
+growBy500()
+growBy500()
+currentPopulation += growBy500() // current pop is now 7422
+
+let anotherGrowBy500 = growBy500
+anotherGrowBy500() // totalGrowth is apparently now 2500
+
+var someOtherPopulation = 4061981
+let growBy10000 = makeGrowthTracker(forGrowth: 10000)
+someOtherPopulation += growBy10000()
+currentPopulation
+
+
+
+
+
+
+
