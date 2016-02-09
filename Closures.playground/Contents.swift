@@ -75,4 +75,18 @@ let bigProjections = projectedPopulations.filter {
 }
 bigProjections
 
+/*
+let totalProjection = projectedPopulations.reduce(0) {
+    (accumulatedProjection: Int, precinctProjection: Int) -> Int in
+    return accumulatedProjection + precinctProjection
+}
+*/
+
+
+
+let totalProjection = projectedPopulations.reduce(0) { $0 + $1 }
+
+totalProjection
+
+
 
