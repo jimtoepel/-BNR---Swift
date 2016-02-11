@@ -18,8 +18,8 @@ case .Left:
     
 case .Right:
     print("right aligned")
-    
-case .Center:
+
+default:
     print("center aligned")
     
 }
