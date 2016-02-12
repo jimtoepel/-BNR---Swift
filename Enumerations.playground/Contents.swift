@@ -2,15 +2,25 @@
 
 import Cocoa
 
-enum TextAlignment {
-    case Left
-    case Right
-    case Center
+enum TextAlignment: Int {
+    case Left       = 20
+    case Right      = 30
+    case Center     = 40
+    case Justify    = 50
 }
 
-var alignment = TextAlignment.Left
-alignment = .Center
+var alignment = TextAlignment.Justify
 
+// Create a raw value
+let myRawValue = 20
+
+if let myAlignment = TextAlignment(rawValue: myRawValue) {
+    // conversion worked!
+    print("successfully converted \(myRawValue) into a TextAlignment")
+} else {
+    // converstion failed
+    print("\(myRawValue) has no corresponding TextAlignment case")
+}
 
 switch alignment {
 case .Left:
@@ -19,7 +29,22 @@ case .Left:
 case .Right:
     print("right aligned")
 
-default:
+case .Center:
     print("center aligned")
     
+case .Justify:
+    print("justified")
+    
 }
+
+enum ProgramingLanguage: String {
+    case Swift
+    case ObjectiveC = "Objective-C"
+    case C
+    case Cpp        = "C++"
+    case Java       
+}
+
+let myFavoriteLanguage = ProgramingLanguage.Swift
+print("My favorite programming language is \(myFavoriteLanguage.rawValue)")
+
