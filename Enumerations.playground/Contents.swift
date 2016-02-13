@@ -48,3 +48,17 @@ enum ProgramingLanguage: String {
 let myFavoriteLanguage = ProgramingLanguage.Swift
 print("My favorite programming language is \(myFavoriteLanguage.rawValue)")
 
+
+enum Lightbulb {
+    case On
+    case Off
+
+    func surfaceTemperatureForAmbientTemperature(ambient: Double) -> Double {
+    switch self {
+    case .On:
+        return ambient + 150.0
+    case .Off:
+        return ambient
+    }
+}
+}
