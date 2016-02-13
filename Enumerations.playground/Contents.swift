@@ -61,4 +61,24 @@ enum Lightbulb {
         return ambient
     }
 }
+    mutating func toggle () {
+        switch self {
+        case .On:
+            self = .Off
+        case .Off:
+            self = .On
+        }
+    }
 }
+
+var bulb = Lightbulb.On
+let ambientTemperature = 77.0
+
+var bulbTemperature = bulb.surfaceTemperatureForAmbientTemperature(ambientTemperature)
+print("The bulb's temperature is \(bulbTemperature)")
+
+bulb.toggle()
+bulbTemperature = bulb.surfaceTemperatureForAmbientTemperature(ambientTemperature)
+print("the bulb's surface temp is \(bulbTemperature)")
+
+
