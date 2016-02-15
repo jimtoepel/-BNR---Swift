@@ -92,6 +92,9 @@ enum ShapeDimensions {
     // Rectangle's associated value defines its width and height
     case Rectangle(width: Double, height: Double)
     
+    // Right triangle!
+    case TriangleRight(s1: Double, s2: Double, h: Double)
+    
     func area() -> Double {
         switch self {
         case .Point:
@@ -102,6 +105,25 @@ enum ShapeDimensions {
             
         case let .Rectangle(width: w, height: h):
             return w * h
+            
+        case let .TriangleRight(s1: a, s2: b, h: c):
+            return a * b * 0.5
+        }
+    }
+    
+    func perimeter() -> Double {
+        switch self {
+        case .Point:
+            return 0
+            
+        case let .Square(side):
+            return side * 4.0
+            
+        case let .Rectangle(width: w, height: h):
+            return (w * 2.0) + (h * 2.0)
+            
+        case let .TriangleRight(s1: a, s2: b, h: c):
+            return a + b + c
         }
     }
 }
@@ -109,11 +131,25 @@ enum ShapeDimensions {
 var squareShape = ShapeDimensions.Square(10.0)
 var rectShape = ShapeDimensions.Rectangle(width: 5.0, height: 10.0)
 var pointShape = ShapeDimensions.Point
+var triangleRightShape = ShapeDimensions.TriangleRight(s1: 3, s2: 4, h: 5)
 
 print("square's area = \(squareShape.area())")
 print("rectangle's area = \(rectShape.area())")
 print("point's area = \(pointShape.area())")
+print("TriRight's area = \(triangleRightShape.area())")
+
+print("square's perimeter = \(squareShape.perimeter())")
+print("rectangle's perimeter = \(rectShape.perimeter())")
+print("point's perimeter = \(pointShape.perimeter())")
+print("TriRights's perimeter = \(triangleRightShape.perimeter())")
+
+enum FamilyTree {
+    case NoKnownParents
+    indirect case OneKnownParent(name: String, ancestors: FamilyTree)
+    indirect case TwoKnownParents(fatherName: String, fathersAncestors: FamilyTree, motherName: String, motherAncestors: FamilyTree)
+}
 
 
+let fredAncestors = FamilyTree.TwoKnownParents(fatherName: "Fred Sr", fathersAncestors: .OneKnownParent(name: "Beth", ancestors: .NoKnownParents), motherName: "Marsha", motherAncestors: .NoKnownParents)
 
 
