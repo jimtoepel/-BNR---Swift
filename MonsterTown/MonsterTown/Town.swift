@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  Town.swift
 //  MonsterTown
 //
 //  Created by Jim Toepel on 2/15/16.
@@ -8,6 +8,9 @@
 
 import Foundation
 
-var myTown = Town()
-print("Population: \(myTown.population), number of stoplights: \(myTown.numberOfStoplights)")
+struct Town {
+    
+    var population = 5422
+    var numberOfStoplights = 4
 
+}
