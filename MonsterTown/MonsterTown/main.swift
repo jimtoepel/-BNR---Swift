@@ -9,5 +9,15 @@
 import Foundation
 
 var myTown = Town()
-print("Population: \(myTown.population), number of stoplights: \(myTown.numberOfStoplights)")
+
+myTown.printTownDescription()
+
+myTown.changePopulation(500)
+
+myTown.printTownDescription()
+
+let gm = Monster()
+gm.town = myTown
+gm.terrorizeTown()
+
 
