@@ -12,7 +12,7 @@ import Foundation
 class Zombie: Monster {
     var walksWithLimp = true
     
-    override func terrorizeTown() {
+    final override func terrorizeTown() {
         town?.changePopulation(-10)
         super.terrorizeTown()
     }
