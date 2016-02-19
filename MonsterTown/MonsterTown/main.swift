@@ -21,5 +21,6 @@ fredTheZombie.terrorizeTown()
 fredTheZombie.town?.printTownDescription()
 
 
+fredTheZombie.changeName("Fred the Zombie", walksWithLimp: false)
 
 
