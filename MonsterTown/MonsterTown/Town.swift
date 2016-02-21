@@ -10,7 +10,7 @@ import Foundation
 
 struct Town {
     
-    var population = 5422
+    var population = 9
     var numberOfStoplights = 4
     
     func printTownDescription() {
@@ -19,6 +19,14 @@ struct Town {
     
     mutating func changePopulation(amount: Int) {
         population += amount
+        if population <= 0 {
+            print("The town is empty, nobody left to eat")
+            population = 0
+        } else if population >= 2 {
+            print("The zombies left \(population) people alive")
+        } else if population == 1 {
+            print("There is a lone survivor")
+        }
     }
 
 }
