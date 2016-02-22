@@ -12,7 +12,7 @@ var myTown = Town()
 
 
 
-//myTown.changePopulation(500)
+myTown.changePopulation(500)
 myTown.printTownDescription()
 
 let fredTheZombie = Zombie()
