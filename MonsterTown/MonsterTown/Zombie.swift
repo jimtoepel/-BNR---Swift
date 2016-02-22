@@ -11,15 +11,20 @@ import Foundation
 
 class Zombie: Monster {
     var walksWithLimp = true
+    var deathQuota = 10
     
     final override func terrorizeTown() {
         
-        // switch to check town population
-        // Greater than ten? -> current flow
-        // 10 or less? -> print "killed everyone, nobody left", set to 0
-        // 0 -> "hungry zombie..."
+        if town?.population >= deathQuota {
+            
+            town?.changePopulation(-deathQuota)
+            
+        } else {
         
-        town?.changePopulation(-10)
+            town?.population = 0
+        
+        }
+        
         super.terrorizeTown()
     }
     
