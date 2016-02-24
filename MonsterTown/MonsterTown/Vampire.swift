@@ -11,7 +11,7 @@ import Foundation
 
 class Vampire: Monster {
     var deathQuota = 1
-    var vampireThralls = [""]
+    var vampireThralls = [String]()
     
     override func terrorizeTown() {
         
