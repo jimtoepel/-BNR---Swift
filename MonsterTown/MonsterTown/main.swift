@@ -22,6 +22,8 @@ fredTheZombie.town?.printTownDescription()
 
 let kyleTheVampire = Vampire()
 kyleTheVampire.town = fredTheZombie.town
+let spookyNoise = Zombie.makeSpookyNoise()
+print(spookyNoise)
 
 for i in 1...5 {
     
