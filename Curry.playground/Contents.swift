@@ -17,3 +17,17 @@ func greetingForName(name: String) -> (String) -> String {
     }
     return greeting
 }
+
+
+let greeterFunction = greetingForName("Matt")
+let theGreeting = greeterFunction("Hello,")
+print(theGreeting)
+
+func greeting(greeting: String) (name: String) -> String {
+    return "\(greeting) \(name)"
+}
+
+
+let friendlyGreeting = greeting("Hello,")
+let newGreeting = friendlyGreeting(name: "Matt")
+print(newGreeting)
