@@ -44,4 +44,7 @@ struct Person {
 }
 
 var p = Person()
-let changer = Person.changeName
+p.changeName("John", ln: "Gallagher")
+p.firstName // John
+p.lastName
+
