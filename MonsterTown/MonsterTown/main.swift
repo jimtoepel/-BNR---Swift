@@ -9,11 +9,13 @@
 import Foundation
 
 var myTown = Town()
+let ts = myTown.townSize
+print(ts)
 
 
 
-//myTown.changePopulation(500)
-myTown.printTownDescription()
+myTown.changePopulation(1000000)
+print("Size: \(myTown.townSize); population: \(myTown.population)")
 
 let fredTheZombie = Zombie()
 fredTheZombie.town = myTown
