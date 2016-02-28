@@ -14,7 +14,7 @@ print(ts)
 
 
 
-myTown.changePopulation(1000000)
+myTown.changePopulation(-5000)
 print("Size: \(myTown.townSize); population: \(myTown.population)")
 
 let fredTheZombie = Zombie()
@@ -37,3 +37,6 @@ kyleTheVampire.town?.printTownDescription()
 fredTheZombie.changeName("Fred the Zombie", walksWithLimp: false)
 
 
+print("Victim pool: \(fredTheZombie.victimPool)")
+fredTheZombie.victimPool = 500
+print("Victim pool: \(fredTheZombie.victimPool); population: \(fredTheZombie.town?.population)")
