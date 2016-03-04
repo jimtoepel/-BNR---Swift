@@ -10,7 +10,7 @@ import Foundation
 
 
 class Zombie: Monster {
-    class func makeSpookyNoise() -> String {
+    class var spookyNoise: String {
         return "Brains..."
     }
     
