@@ -24,8 +24,6 @@ fredTheZombie.town?.printTownDescription()
 
 let kyleTheVampire = Vampire()
 kyleTheVampire.town = fredTheZombie.town
-let spookyNoise = Zombie.makeSpookyNoise()
-print(spookyNoise)
 
 for i in 1...5 {
     
@@ -39,3 +37,8 @@ fredTheZombie.changeName("Fred the Zombie", walksWithLimp: false)
 
 print("Victim pool: \(fredTheZombie.victimPool)")
 fredTheZombie.victimPool = 500
+print(Zombie.spookyNoise)
+print(Vampire.spookyNoise)
+if Zombie.isTerrifying {
+    print("Run Away!")
+}

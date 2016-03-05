@@ -10,7 +10,7 @@ import Foundation
 
 
 class Zombie: Monster {
-    class var spookyNoise: String {
+    class override var spookyNoise: String {
         return "Brains..."
     }
     
