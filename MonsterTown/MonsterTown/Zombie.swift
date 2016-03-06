@@ -14,22 +14,25 @@ class Zombie: Monster {
         return "Brains..."
     }
     
+    private var isFallingApart = false
     var walksWithLimp = true
     var deathQuota = 10
 
     final override func terrorizeTown() {
-        
-        if town?.population >= deathQuota {
+        if !isFallingApart {
             
-            town?.changePopulation(-deathQuota)
+            if town?.population >= deathQuota {
             
-        } else {
+                town?.changePopulation(-deathQuota)
+            
+            } else {
         
-            town?.population = 0
+                town?.population = 0
         
+            }
+        
+            super.terrorizeTown()
         }
-        
-        super.terrorizeTown()
     }
     
     func changeName(name: String, walksWithLimp: Bool) {
