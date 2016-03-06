@@ -14,7 +14,7 @@ class Zombie: Monster {
         return "Brains..."
     }
     
-    private var isFallingApart = false
+    private(set) var isFallingApart = false
     var walksWithLimp = true
     var deathQuota = 10
 
