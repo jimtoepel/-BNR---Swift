@@ -14,7 +14,7 @@ print(ts)
 
 
 
-myTown.changePopulation(-5000)
+myTown.changePopulation(+5000)
 print("Size: \(myTown.townSize); population: \(myTown.population)")
 
 let fredTheZombie = Zombie()

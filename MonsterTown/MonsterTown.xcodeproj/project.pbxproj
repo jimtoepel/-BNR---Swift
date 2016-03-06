@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B10A13381C8CF3B90042D14D /* Mayor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A13371C8CF3B90042D14D /* Mayor.swift */; };
 		B169825F1C7ACDCB000FE06E /* Vampire.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169825E1C7ACDCB000FE06E /* Vampire.swift */; };
 		B1788FB41C74348400B80C36 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1788FB31C74348400B80C36 /* Monster.swift */; };
 		B1788FB61C74384000B80C36 /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1788FB51C74384000B80C36 /* Zombie.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B10A13371C8CF3B90042D14D /* Mayor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mayor.swift; sourceTree = "<group>"; };
 		B169825E1C7ACDCB000FE06E /* Vampire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vampire.swift; sourceTree = "<group>"; };
 		B1788FB31C74348400B80C36 /* Monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
 		B1788FB51C74384000B80C36 /* Zombie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				B1788FB31C74348400B80C36 /* Monster.swift */,
 				B169825E1C7ACDCB000FE06E /* Vampire.swift */,
 				B1AB0CF21C72F09500C06575 /* Town.swift */,
+				B10A13371C8CF3B90042D14D /* Mayor.swift */,
 			);
 			path = MonsterTown;
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 			files = (
 				B1AB0CEC1C72D77100C06575 /* main.swift in Sources */,
 				B1788FB61C74384000B80C36 /* Zombie.swift in Sources */,
+				B10A13381C8CF3B90042D14D /* Mayor.swift in Sources */,
 				B1788FB41C74348400B80C36 /* Monster.swift in Sources */,
 				B169825F1C7ACDCB000FE06E /* Vampire.swift in Sources */,
 				B1AB0CF31C72F09500C06575 /* Town.swift in Sources */,
