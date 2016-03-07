@@ -8,10 +8,15 @@
 
 import Foundation
 
-class Mayor {
+struct Mayor {
     
+    // Check for population change (old + new)
     
-    
+    func mayoralResponse(poulation: Int, oldpopulation: Int) {
+        if oldpopulation > poulation {
+            print("I'm deeply saddened to hear about this latest tragedy. I promise that my office is looking into the nature of this rash of violence.")
+        }
+    }
     
     
 }
