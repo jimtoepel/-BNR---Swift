@@ -10,7 +10,7 @@ import Foundation
 
 struct Town {
     static let region = "South"
-    let mayor = Mayor()
+    var mayor = Mayor()
     var population = 5422 {
         didSet(oldPopulation) {
             if oldPopulation >= population {

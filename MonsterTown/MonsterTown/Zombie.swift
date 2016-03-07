@@ -24,6 +24,7 @@ class Zombie: Monster {
             if town?.population >= deathQuota {
             
                 town?.changePopulation(-deathQuota)
+                town!.mayor.scaredyMayor()
             
             } else {
         
