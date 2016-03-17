@@ -14,8 +14,17 @@ class Zombie: Monster {
         return "Brains..."
     }
     
-    private(set) var isFallingApart = false
-    var walksWithLimp = true
+
+    var walksWithLimp: Bool
+    private(set) var isFallingApart: Bool
+    
+    init(limp: Bool, fallingApart: Bool, town: Town?, monsterName: String){
+        walksWithLimp = limp
+        isFallingApart = fallingApart
+        super.init(town:town, monsterName:monsterName)
+    }
+    
+    
     var deathQuota = 10
 
     final override func terrorizeTown() {
