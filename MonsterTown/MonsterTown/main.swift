@@ -15,7 +15,7 @@ let ts = myTown.townSize
 print(ts)
 
 
-
+2
 myTown.changePopulation(+5000)
 print("Size: \(myTown.townSize); population: \(myTown.population)")
 
@@ -26,6 +26,10 @@ for i in 1...3 {
 fredTheZombie.terrorizeTown()
 fredTheZombie.town?.printTownDescription()
 }
+fredTheZombie.changeName("Fred the Zombie", walksWithLimp: false)
+
+var convenientZombie = Zombie(limp: true, fallingApart: false)
+
     
 let kyleTheVampire = Vampire(town: fredTheZombie.town, monsterName: "Kyle")
 

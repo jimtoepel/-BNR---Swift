@@ -17,6 +17,7 @@ class Zombie: Monster {
 
     var walksWithLimp: Bool
     private(set) var isFallingApart: Bool
+    var deathQuota = 10
     
     init(limp: Bool, fallingApart: Bool, town: Town?, monsterName: String){
         walksWithLimp = limp
@@ -24,8 +25,13 @@ class Zombie: Monster {
         super.init(town:town, monsterName:monsterName)
     }
     
-    
-    var deathQuota = 10
+    convenience init(limp: Bool, fallingApart: Bool) {
+        self.init(limp: limp, fallingApart: fallingApart, town: nil, monsterName: "Fred")
+        if walksWithLimp {
+            print("This zombie has a bad knee")
+        }
+    }
+
 
     final override func terrorizeTown() {
         if !isFallingApart {
