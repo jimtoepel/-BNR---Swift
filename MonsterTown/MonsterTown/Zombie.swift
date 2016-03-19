@@ -32,6 +32,13 @@ class Zombie: Monster {
         }
     }
 
+    required init(town: Town?, monsterName: String)
+    {
+        walksWithLimp = false
+        isFallingApart = false
+        super.init(town: town, monsterName: monsterName)
+    }
+    
 
     final override func terrorizeTown() {
         if !isFallingApart {
