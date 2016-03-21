@@ -8,16 +8,14 @@
 
 import Foundation
 
-var myTown = Town(population: 10000, stoplights: 6)
+var myTown = Town(population: -3, stoplights: 6)
 
-myTown.printTownDescription()
-let ts = myTown.townSize
+myTown?.printTownDescription()
+let ts = myTown?.townSize
 print(ts)
 
-
-2
-myTown.changePopulation(+5000)
-print("Size: \(myTown.townSize); population: \(myTown.population)")
+myTown?.changePopulation(+5000)
+print("Size: \(myTown?.townSize); population: \(myTown?.population)")
 
 var fredTheZombie:Zombie? = Zombie(limp: false, fallingApart: false, town: myTown, monsterName: "Fred")
 
