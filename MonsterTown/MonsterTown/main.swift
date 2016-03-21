@@ -19,19 +19,19 @@ print(ts)
 myTown.changePopulation(+5000)
 print("Size: \(myTown.townSize); population: \(myTown.population)")
 
-let fredTheZombie = Zombie(limp: false, fallingApart: false, town: myTown, monsterName: "Fred")
+var fredTheZombie:Zombie? = Zombie(limp: false, fallingApart: false, town: myTown, monsterName: "Fred")
 
 
 for i in 1...3 {
-fredTheZombie.terrorizeTown()
-fredTheZombie.town?.printTownDescription()
+fredTheZombie?.terrorizeTown()
+fredTheZombie?.town?.printTownDescription()
 }
-fredTheZombie.changeName("Fred the Zombie", walksWithLimp: false)
+fredTheZombie?.changeName("Fred the Zombie", walksWithLimp: false)
 
 var convenientZombie = Zombie(limp: true, fallingApart: false)
 
-    
-let kyleTheVampire = Vampire(town: fredTheZombie.town, monsterName: "Kyle")
+
+let kyleTheVampire = Vampire(town: fredTheZombie?.town, monsterName: "Kyle")
 
 
 for i in 1...5 {
@@ -41,13 +41,15 @@ kyleTheVampire.town?.printTownDescription()
 
 }
 
-fredTheZombie.changeName("Fred the Zombie", walksWithLimp: false)
+fredTheZombie?.changeName("Fred the Zombie", walksWithLimp: false)
 
 
-print("Victim pool: \(fredTheZombie.victimPool)")
-fredTheZombie.victimPool = 500
+print("Victim pool: \(fredTheZombie?.victimPool)")
+fredTheZombie?.victimPool = 500
 print(Zombie.spookyNoise)
 print(Vampire.spookyNoise)
 if Zombie.isTerrifying {
     print("Run Away!")
 }
+
+fredTheZombie = nil

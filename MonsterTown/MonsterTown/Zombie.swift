@@ -63,4 +63,9 @@ class Zombie: Monster {
         self.walksWithLimp = walksWithLimp
     }
     
+    
+    deinit {
+        print("Zombie named \(name) is no longer with us.")
+    }
+    
 }
