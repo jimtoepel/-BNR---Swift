@@ -32,11 +32,12 @@ class Zombie: Monster {
         }
     }
 
-    required init(town: Town?, monsterName: String)
+    convenience required init(town: Town?, monsterName: String)
     {
+        self.init(town: town, monsterName: monsterName)
         walksWithLimp = false
         isFallingApart = false
-        super.init(town: town, monsterName: monsterName)
+
     }
     
 
