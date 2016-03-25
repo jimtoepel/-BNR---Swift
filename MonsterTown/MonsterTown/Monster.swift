@@ -26,7 +26,11 @@ class Monster {
         }
     }
     
-    required init(town: Town?, monsterName: String ) {
+    required init?(town: Town?, monsterName: String ) {
+        if monsterName == "" {
+            print("Name your monster, dummy!")
+            return nil
+        }
         self.town = town
         name = monsterName
     }

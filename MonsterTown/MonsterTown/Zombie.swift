@@ -19,20 +19,20 @@ class Zombie: Monster {
     private(set) var isFallingApart: Bool
     var deathQuota = 10
     
-    init(limp: Bool, fallingApart: Bool, town: Town?, monsterName: String){
+    init?(limp: Bool, fallingApart: Bool, town: Town?, monsterName: String){
         walksWithLimp = limp
         isFallingApart = fallingApart
         super.init(town:town, monsterName:monsterName)
     }
     
-    convenience init(limp: Bool, fallingApart: Bool) {
+    convenience init?(limp: Bool, fallingApart: Bool) {
         self.init(limp: limp, fallingApart: fallingApart, town: nil, monsterName: "Fred")
         if walksWithLimp {
             print("This zombie has a bad knee")
         }
     }
 
-    convenience required init(town: Town?, monsterName: String)
+    convenience required init?(town: Town?, monsterName: String)
     {
         self.init(town: town, monsterName: monsterName)
         walksWithLimp = false

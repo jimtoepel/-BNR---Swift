@@ -34,8 +34,8 @@ let kyleTheVampire = Vampire(town: fredTheZombie?.town, monsterName: "Kyle")
 
 for i in 1...5 {
     
-kyleTheVampire.terrorizeTown()
-kyleTheVampire.town?.printTownDescription()
+kyleTheVampire!.terrorizeTown()
+kyleTheVampire!.town?.printTownDescription()
 
 }
 
