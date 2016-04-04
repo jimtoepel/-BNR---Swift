@@ -21,7 +21,8 @@ protocol TabularDataSource {
 }
 
 
-func printTable(dataSource: TabularDataSource) {
+func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>) {
+    print("Table: \(dataSource.description)")
     
         // Create arrays of the row and colum labels
     let rowLabels = (0 ..< dataSource.numberOfRows).map { dataSource.labelForRow($0) }
@@ -78,9 +79,13 @@ struct Person {
     
 }
 
-struct Department: TabularDataSource {
+struct Department: TabularDataSource, CustomStringConvertible {
     let name: String
     var people = [Person]()
+    
+    var description: String {
+        return "Department (\(name))"
+    }
 
     init(name: String) {
         self.name = name
