@@ -124,3 +124,7 @@ var department = Department(name: "Engineering")
 department.addPerson(Person(name: "Joe", age: 30, yearsOfExperience: 6))
 department.addPerson(Person(name: "Karen", age: 40, yearsOfExperience: 18))
 department.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
+
+
+printTable(department)
+
