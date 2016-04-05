@@ -63,7 +63,7 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
             for j in 0 ..< dataSource.numberOfColumns {
                 let item = dataSource.itemForRow(i, column: j)
                 let itemString = " \(item) |"
-                let paddingAmount = columnWidths[j] - itemString.characters.count
+                let paddingAmount = columnWidths[j] - itemString.characters.count // I think something is fixed here.
                 out += padding(paddingAmount) + itemString
             }
         
@@ -81,6 +81,8 @@ struct Person {
 
 struct Department: TabularDataSource, CustomStringConvertible {
     let name: String
+    let c1 = "Age"
+    let c2 = "Years of Experience"
     var people = [Person]()
     
     var description: String {
@@ -109,8 +111,8 @@ struct Department: TabularDataSource, CustomStringConvertible {
     
     func labelForColumn(column: Int) -> String {
         switch column {
-        case 0: return "Age"
-        case 1: return "Years of Experience"
+        case 0: return c1 // This defines the length of the column
+        case 1: return c2
         default: fatalError("Invalid column!")
         }
     }
@@ -126,7 +128,7 @@ struct Department: TabularDataSource, CustomStringConvertible {
 }
 
 var department = Department(name: "Engineering")
-department.addPerson(Person(name: "Joe", age: 1000, yearsOfExperience: 6))
+department.addPerson(Person(name: "Joe", age: 100, yearsOfExperience: 6))
 department.addPerson(Person(name: "Karen", age: 40, yearsOfExperience: 18))
 department.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
 
