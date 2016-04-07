@@ -44,10 +44,17 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
         // Also keep track of the width of each column
         var columnWidths = [Int]()
     
-        for columnLabel in columnLabels {
-            let columnHeader = " \(columnLabel) |"
-            firstRow += columnHeader
-            columnWidths.append(columnHeader.characters.count)
+    for (column, columnLabel) in columnLabels.enumerate() {
+        let columnHeader = " \(columnLabel) |"
+        columnWidths.append(columnHeader.characters.count)
+        
+        // determine item with maximum width in column
+        for row in 0 ..< dataSource.numberOfRows {
+            let itemString = "\(dataSource.itemForRow(row, column: column)) |"
+            columnWidths[column] = max(columnWidths[column], itemString.characters.count)
+        }
+        
+        firstRow += padding(columnWidths[column] - columnHeader.characters.count) + "\(columnHeader)"
         }
         print(firstRow)
     
@@ -63,7 +70,7 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
             for j in 0 ..< dataSource.numberOfColumns {
                 let item = dataSource.itemForRow(i, column: j)
                 let itemString = " \(item) |"
-                let paddingAmount = columnWidths[j] - itemString.characters.count // I think something is fixed here.
+//                let paddingAmount = columnWidths[j] - itemString.characters.count // I think something is fixed here.
                 out += padding(paddingAmount) + itemString
             }
         
@@ -128,7 +135,7 @@ struct Department: TabularDataSource, CustomStringConvertible {
 }
 
 var department = Department(name: "Engineering")
-department.addPerson(Person(name: "Joe", age: 100, yearsOfExperience: 6))
+department.addPerson(Person(name: "Joe", age: 1000, yearsOfExperience: 6))
 department.addPerson(Person(name: "Karen", age: 40, yearsOfExperience: 18))
 department.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
 
