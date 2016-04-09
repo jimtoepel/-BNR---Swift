@@ -70,7 +70,7 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
             for j in 0 ..< dataSource.numberOfColumns {
                 let item = dataSource.itemForRow(i, column: j)
                 let itemString = " \(item) |"
-//                let paddingAmount = columnWidths[j] - itemString.characters.count // I think something is fixed here.
+                let paddingAmount = columnWidths[j] - itemString.characters.count // I think something is fixed here.
                 out += padding(paddingAmount) + itemString
             }
         
