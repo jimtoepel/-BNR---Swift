@@ -5,10 +5,31 @@ import Cocoa
 var str = "Hello, playground"
 
 
-func printTable(date: [[Int]]) {
-    for row in data {
-        // create an empty string
-        var out = ""
+func padding(amount: Int) -> String {
+    var paddingString = ""
+    for _ in 0 ..< amount {
+        paddingString += " "
+    }
+    return paddingString
+}
+
+
+
+func printTable(rowLabels: [String], data: [[Int]]) {
+    
+        // Create an array of the width of each row label
+        let rowLabelWidths = rowLabels.map { $0.characters.count }
+
+        // Determine length of longest row label
+        guard let maxRowLabelWidth = rowLabelWidths.maxElement() else {
+            return
+        }
+        
+        
+        for (i, row) in data.enumerate() {
+            // Pad the row lavel out so they are all the same length
+            let paddingAmount = maxRowLabelWidth - rowLabelWidths[i]
+            var out = rowLabels[i] + padding(paddingAmount) + " |"
         
         // append each item in this row to our string
         for item in row {
@@ -21,6 +42,7 @@ func printTable(date: [[Int]]) {
 }
 
 
+let rowLabels = ["Joe", "Karen", "Fred"]
 
 let data = [
     [30, 6],
@@ -30,4 +52,5 @@ let data = [
 
 
 
-printTable(data)
+printTable(rowLabels, data: data)
+
