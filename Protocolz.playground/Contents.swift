@@ -45,9 +45,16 @@ func printTable(rowLabels: [String], columnLabels: [String], data: [[Int]]) {
             var out = rowLabels[i] + padding(paddingAmount) + " |"
         
         // append each item in this row to our string
-        for item in row {
-            out += " \(item) |"
+        for (j, item) in row.enumerate() {
+            let itemString = " \(item) |"
+            var paddingAmount = columnWidths[j] - itemString.characters.count
+            if paddingAmount < 0 {
+                paddingAmount = 0
+            }
+            out += padding(paddingAmount) + itemString
+            
         }
+            
         
         // Done - print it!
         print(out)
