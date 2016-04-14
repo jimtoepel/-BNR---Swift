@@ -26,7 +26,13 @@ func padding(amount: Int) -> String {
 }
 
 
-func printTable(rowLabels: [String], columnLabels: [String], data: [[Int]]) {
+
+func printTable(dataSource: TabularDataSource) {
+        // Create arrays of the row and column labels
+        let rowLabels = (0 ..< dataSource.numberOfRows).map { dataSource.labelForRow($0) }
+    
+        let columnLabels = (0 ..< dataSource.numberOfColumns).map { dataSource.labelForColumn($0) }
+    
     
         // Create an array of the width of each row label
         let rowLabelWidths = rowLabels.map { $0.characters.count }
