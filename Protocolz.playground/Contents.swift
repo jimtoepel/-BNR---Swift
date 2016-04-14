@@ -95,7 +95,7 @@ struct Person {
     let yearsOfExperience: Int
 }
 
-struct Department {
+struct Department: TabularDataSource {
     let name: String
     var people = [Person]()
     
@@ -105,6 +105,35 @@ struct Department {
     
     mutating func addPerson(person: Person) {
         people.append(person)
+    }
+    
+    var numberOfRows: Int {
+        return people.count
+    }
+    
+    var numberOfColumns: Int {
+        return 2
+    }
+    
+    func labelForRow(row: Int) -> String {
+        return people[row].name
+    }
+    
+    func labelForColumn(column: Int) -> String {
+        switch column {
+        case 0: return "Age"
+        case 1: return "Years of Experience"
+        default: fatalError("Invalid column!")
+        }
+    }
+    
+    func itemForRow(row: Int, column: Int) -> Int {
+        let person = people[row]
+        switch column {
+        case 0: return person.age
+        case 1: return person.yearsOfExperience
+        default: fatalError("Invalid column!")
+        }
     }
 }
 
