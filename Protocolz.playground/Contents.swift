@@ -56,13 +56,14 @@ func printTable(dataSource: TabularDataSource) {
     
         print(firstRow)
     
-        for (i, row) in data.enumerate() {
+        for i in 0 ..< dataSource.numberOfRows {
             // Pad the row lavel out so they are all the same length
             let paddingAmount = maxRowLabelWidth - rowLabelWidths[i]
             var out = rowLabels[i] + padding(paddingAmount) + " |"
         
         // append each item in this row to our string
-        for (j, item) in row.enumerate() {
+        for j in 0 ..< dataSource.numberOfColumns {
+            let item = dataSource.itemForRow(i, column: j)
             let itemString = " \(item) |"
             var paddingAmount = columnWidths[j] - itemString.characters.count
             if paddingAmount < 0 {
@@ -143,7 +144,9 @@ struct Department: TabularDataSource {
     }
 }
 
-var department = Department(name: "Engineering")
-department.addPerson(Person(name: "Joe", age: 30, yearsOfExperience: 6))
-department.addPerson(Person(name: "Karen", age: 40, yearsOfExperience: 18))
-department.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
+var departmentEng = Department(name: "Engineering")
+departmentEng.addPerson(Person(name: "Joe", age: 30, yearsOfExperience: 6))
+departmentEng.addPerson(Person(name: "Karen", age: 40, yearsOfExperience: 18))
+departmentEng.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
+
+printTable(departmentEng)
