@@ -27,7 +27,8 @@ func padding(amount: Int) -> String {
 
 
 
-func printTable(dataSource: TabularDataSource) {
+func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>) {
+        print("Table: \(dataSource.description)")
         // Create arrays of the row and column labels
         let rowLabels = (0 ..< dataSource.numberOfRows).map { dataSource.labelForRow($0) }
     
@@ -153,6 +154,5 @@ departmentEng.addPerson(Person(name: "Joe", age: 30, yearsOfExperience: 6))
 departmentEng.addPerson(Person(name: "Karen", age: 40, yearsOfExperience: 18))
 departmentEng.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
 
-print(departmentEng)
 printTable(departmentEng)
 
