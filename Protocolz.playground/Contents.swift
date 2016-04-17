@@ -41,18 +41,33 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
     // Create an array of the width of each row label
     let rowLabelWidths = rowLabels.map { $0.characters.count }
 
+
+    // Also keep track of the width of each column
+    var columnWidths = [Int]()
+    
+    // Keep track of max item in each column
+    var columnMax = [Int]()
+
+    for j in 0 ..< dataSource.numberOfColumns {
+        columnMax.insert(0, atIndex: j)
+        
+        for i in 0 ..< dataSource.numberOfRows {
+            let item = dataSource.itemForRow(i, column: j)
+            let itemString = "\(item)"
+            if itemString.characters.count > columnMax[j] {
+                columnMax[j] = itemString.characters.count
+            }
+        }
+    }
+    print(columnMax)
+    
     // Determine length of longest row label
     guard let maxRowLabelWidth = rowLabelWidths.maxElement() else {
         return
     }
     
-    
-    
     // create first row containing column headers
     var firstRow: String = padding(maxRowLabelWidth) + " |"
-    
-    // Also keep track of the width of each column
-    var columnWidths = [Int]()
     
     for columnLabel in columnLabels {
         let columnHeader = " \(columnLabel) |"
@@ -63,7 +78,12 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
     print(firstRow)
     
     for i in 0 ..< dataSource.numberOfRows {
-        // Pad the row lavel out so they are all the same length
+        // Pad the row label out so they are all the same length
+/*
+        if columnMax[i] > maxRowLabelWidth {
+            maxRowLabelWidth = columnMax[i]
+        }
+*/        
         let paddingAmount = maxRowLabelWidth - rowLabelWidths[i]
         var out = rowLabels[i] + padding(paddingAmount) + " |"
         
@@ -80,10 +100,12 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
         // Done - print it!
         print(out)
     }
+
+
 }
 
- 
- 
+
+
 struct Person {
     let name: String
     let age: Int
