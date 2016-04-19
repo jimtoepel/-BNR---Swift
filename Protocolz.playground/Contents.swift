@@ -62,7 +62,7 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
     print(columnMax)
     
     // Determine length of longest row label
-    guard let maxRowLabelWidth = rowLabelWidths.maxElement() else {
+    guard var maxRowLabelWidth = rowLabelWidths.maxElement() else {
         return
     }
     
@@ -77,13 +77,10 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
     
     print(firstRow)
     
+    
     for i in 0 ..< dataSource.numberOfRows {
         // Pad the row label out so they are all the same length
-/*
-        if columnMax[i] > maxRowLabelWidth {
-            maxRowLabelWidth = columnMax[i]
-        }
-*/        
+
         let paddingAmount = maxRowLabelWidth - rowLabelWidths[i]
         var out = rowLabels[i] + padding(paddingAmount) + " |"
         
@@ -91,11 +88,16 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
         for j in 0 ..< dataSource.numberOfColumns {
             let item = dataSource.itemForRow(i, column: j)
             let itemString = " \(item) |"
-            var paddingAmount = columnWidths[j] - itemString.characters.count
-            if paddingAmount < 0 {
-                paddingAmount = 0
+            var padAmount = 0
+            if columnMax[j] >= columnWidths[j] {
+                padAmount = columnMax[j] - itemString.characters.count
+            } else {
+                padAmount = columnWidths[j] - itemString.characters.count
             }
-            out += padding(paddingAmount) + itemString
+            if padAmount < 0 {
+                padAmount = 0
+            }
+            out += padding(padAmount) + itemString
         }
         // Done - print it!
         print(out)
