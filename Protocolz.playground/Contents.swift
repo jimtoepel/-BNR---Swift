@@ -73,6 +73,9 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
         let columnHeader = " \(columnLabel) |"
         firstRow += columnHeader
         columnWidths.append(columnHeader.characters.count)
+        
+// http://forums.bignerdranch.com/viewtopic.php?f=606&t=11273
+        
     }
     
     print(firstRow)
