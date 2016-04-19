@@ -89,10 +89,10 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
             let item = dataSource.itemForRow(i, column: j)
             let itemString = " \(item) |"
             var padAmount = 0
-            if columnMax[j] >= columnWidths[j] {
-                padAmount = columnMax[j] - itemString.characters.count
-            } else {
+            if columnMax[j] <= columnWidths[j] {
                 padAmount = columnWidths[j] - itemString.characters.count
+            } else {
+                padAmount = columnMax[j] - itemString.characters.count
             }
             if padAmount < 0 {
                 padAmount = 0
@@ -161,7 +161,7 @@ struct Department: TabularDataSource, CustomStringConvertible {
 }
 
 var departmentEng = Department(name: "Engineering")
-departmentEng.addPerson(Person(name: "Joe", age: 100, yearsOfExperience: 6))
+departmentEng.addPerson(Person(name: "Joe", age: 10, yearsOfExperience: 6))
 departmentEng.addPerson(Person(name: "Karen", age: 40, yearsOfExperience: 18))
 departmentEng.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
 
