@@ -42,42 +42,27 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
     let rowLabelWidths = rowLabels.map { $0.characters.count }
 
 
-    // Also keep track of the width of each column
-    var columnWidths = [Int]()
-    
-    // Keep track of max item in each column
-    var columnMax = [Int]()
-
-    for j in 0 ..< dataSource.numberOfColumns {
-        columnMax.insert(0, atIndex: j)
-        
-        for i in 0 ..< dataSource.numberOfRows {
-            let item = dataSource.itemForRow(i, column: j)
-            let itemString = "\(item)"
-            if itemString.characters.count > columnMax[j] {
-                columnMax[j] = itemString.characters.count
-            }
-        }
-    }
-    print(columnMax)
-    
     // Determine length of longest row label
     guard var maxRowLabelWidth = rowLabelWidths.maxElement() else {
         return
     }
     
-    // create first row containing column headers
     var firstRow: String = padding(maxRowLabelWidth) + " |"
     
-    for columnLabel in columnLabels {
+    // also keep track of the width of each column
+    var columnWidths = [Int]()
+    for (column, columnLabel) in columnLabels.enumerate() {
         let columnHeader = " \(columnLabel) |"
-        firstRow += columnHeader
         columnWidths.append(columnHeader.characters.count)
         
-// http://forums.bignerdranch.com/viewtopic.php?f=606&t=11273
+        // determine item with maximum width in column
+        for row in 0 ..< dataSource.numberOfRows {
+            let itemString = " \(dataSource.itemForRow(row, column: column)) |"
+            columnWidths[column] = max(columnWidths[column], itemString.characters.count)
+        }
         
+        firstRow += padding(columnWidths[column] - columnHeader.characters.count) + "\(columnHeader)"
     }
-    
     print(firstRow)
     
     
@@ -91,12 +76,7 @@ func printTable(dataSource: protocol<TabularDataSource, CustomStringConvertible>
         for j in 0 ..< dataSource.numberOfColumns {
             let item = dataSource.itemForRow(i, column: j)
             let itemString = " \(item) |"
-            var padAmount = 0
-            if columnMax[j] <= columnWidths[j] {
-                padAmount = columnWidths[j] - itemString.characters.count
-            } else {
-                padAmount = columnMax[j] - itemString.characters.count
-            }
+            var  padAmount = columnWidths[j] - itemString.characters.count
             if padAmount < 0 {
                 padAmount = 0
             }
@@ -116,6 +96,65 @@ struct Person {
     let age: Int
     let yearsOfExperience: Int
 }
+
+
+struct Book {
+    let title: String
+    let author: Int
+    let review: Int
+}
+
+
+
+struct BookCollection: TabularDataSource, CustomStringConvertible {
+    let name: String
+    var books = [Book]()
+ 
+    init(name: String) {
+        self.name = name
+    }
+    
+    var description: String {
+        return "Book Collection: (\(name))"
+    }
+    
+    mutating func addBook(book: Book) {
+        books.append(book)
+    }
+    
+    var numberOfRows: Int {
+        return books.count
+    }
+    
+    var numberOfColumns: Int {
+        return 2
+    }
+    
+    func labelForRow(row: Int) -> String {
+        return books[row].title
+    }
+    
+    func labelForColumn(column: Int) -> String {
+        switch column {
+        case 0: return "Author"
+        case 1: return "Review"
+        default: fatalError("Invalid column!")
+        }
+    }
+    
+    func itemForRow(row: Int, column: Int) -> Int {
+        let book = books[row]
+        switch column {
+        case 0: return book.author
+        case 1: return book.review
+        default: fatalError("Invalid column!")
+        }
+    }
+}
+
+
+
+
 
 struct Department: TabularDataSource, CustomStringConvertible {
     let name: String
@@ -164,9 +203,14 @@ struct Department: TabularDataSource, CustomStringConvertible {
 }
 
 var departmentEng = Department(name: "Engineering")
-departmentEng.addPerson(Person(name: "Joe", age: 10, yearsOfExperience: 6))
+departmentEng.addPerson(Person(name: "Joe", age: 30, yearsOfExperience: 6))
 departmentEng.addPerson(Person(name: "Karen", age: 40, yearsOfExperience: 18))
 departmentEng.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
 
 printTable(departmentEng)
 
+
+var sciFi = BookCollection(name: "Sci-Fi")
+sciFi.addBook(Book(title: "Player of Games", author: 4, review: 5))
+
+printTable(sciFi)
