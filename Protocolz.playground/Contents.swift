@@ -12,7 +12,7 @@ protocol TabularDataSource {
     func labelForRow(row: Int) -> String
     func labelForColumn(column: Int) -> String
     
-    func itemForRow(row: Int, column: Int) -> Int
+    func itemForRow(row: Int, column: Int) -> Any
 }
 
 
@@ -100,7 +100,7 @@ struct Person {
 
 struct Book {
     let title: String
-    let author: Int
+    let author: String
     let review: Int
 }
 
@@ -142,7 +142,7 @@ struct BookCollection: TabularDataSource, CustomStringConvertible {
         }
     }
     
-    func itemForRow(row: Int, column: Int) -> Int {
+    func itemForRow(row: Int, column: Int) -> Any {
         let book = books[row]
         switch column {
         case 0: return book.author
@@ -192,7 +192,7 @@ struct Department: TabularDataSource, CustomStringConvertible {
         }
     }
     
-    func itemForRow(row: Int, column: Int) -> Int {
+    func itemForRow(row: Int, column: Int) -> Any {
         let person = people[row]
         switch column {
         case 0: return person.age
@@ -209,8 +209,11 @@ departmentEng.addPerson(Person(name: "Fred", age: 50, yearsOfExperience: 20))
 
 printTable(departmentEng)
 
+print("")
 
 var sciFi = BookCollection(name: "Sci-Fi")
-sciFi.addBook(Book(title: "Player of Games", author: 4, review: 5))
+sciFi.addBook(Book(title: "Player of Games", author: "Ian Banks", review: 5))
+sciFi.addBook(Book(title: "Catch-22", author: "Joseph Heller", review: 4))
+sciFi.addBook(Book(title: "Farenheit 451", author: "Ray Bradbury", review: 5))
 
 printTable(sciFi)
