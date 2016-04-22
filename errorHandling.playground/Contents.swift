@@ -9,10 +9,10 @@ enum Token {
 
 
 class Lexer {
-    let input: String. CharacterView
+    let input: String.CharacterView
     var position: String.CharacterView.Index
     
-    init(inp: String) {
+    init(input: String) {
         self.input = input.characters
         self.position = self.input.startIndex
     }
