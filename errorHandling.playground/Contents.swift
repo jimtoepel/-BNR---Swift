@@ -9,6 +9,11 @@ enum Token {
 
 
 class Lexer {
+    enum Error: ErrorType {
+        case InvalidCharacter(Character)
+    }
+    
+    
     let input: String.CharacterView
     var position: String.CharacterView.Index
     
@@ -30,6 +35,26 @@ class Lexer {
         position = position.successor()
     }
     
+    func getNumber() -> Int {
+        var value = 0
+        
+        while let nextCharacter = peek() {
+            switch nextCharacter {
+                case "0" ... "9":
+                    // another digit - add it into value
+                let digitValue = Int(String(nextCharacter))!
+                value = 10*value + digitValue
+                advance()
+                
+            default:
+                // A non-digit - go back to regular lexing
+                return value
+            }
+        }
+        
+        return value
+    }
+    
     func lex() throws -> [Token] {
         var tokens = [Token]()
         
@@ -37,6 +62,8 @@ class Lexer {
             switch nextCharacter {
                 case "0" ... "9":
                     // Start of a number - need to grab the rest
+                    let value = getNumber()
+                    tokens.append(.Number(value))
                 
                 case "+":
                     tokens.append(.Plus)
@@ -47,7 +74,7 @@ class Lexer {
                 
                 default:
                     // Something unexpected - need to send back an error
-                
+                    throw Error.InvalidCharacter(nextCharacter)
             }
         }
         return tokens
