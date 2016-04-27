@@ -79,4 +79,20 @@ class Lexer {
         }
         return tokens
     }
+    
 }
+
+
+func evaluate(input: String) {
+    print("Evaluating: \(input)")
+    let lexer = Lexer(input: input)
+    do {
+        let tokens = try lexer.lex()
+        print("Lexer output: \(tokens)")
+    } catch {
+        print("An error occured: \(error)")
+    }
+}
+
+evaluate("10 + 3 + 5")
+evaluate("1 + 2 + abcdefg")
