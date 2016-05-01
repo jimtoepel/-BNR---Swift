@@ -150,9 +150,19 @@ func evaluate(input: String) {
     do {
         let tokens = try lexer.lex()
         print("Lexer output: \(tokens)")
+        
+        let parser = Parser(tokens: tokens)
+        let result = try parser.parse()
+        print("Parser output: \(result)")
+    } catch Lexer.Error.InvalidCharacter(let character) {
+        print("Input contained an invalid character: \(character)")
+    } catch Parser.Error.UnexpectedEndOfInput {
+        print("Unexpected end of input during parsing")
+    } catch Parser.Error.InvalidToken(let token) {
+        print("invalid token during parsing: \(token)")
     } catch {
         print("An error occured: \(error)")
     }
 }
 
-evaluate("10 + 3 + 5")
+evaluate("10 + 8 + 5 + 9")
