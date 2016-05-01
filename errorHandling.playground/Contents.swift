@@ -147,13 +147,9 @@ class Parser {
 func evaluate(input: String) {
     print("Evaluating: \(input)")
     let lexer = Lexer(input: input)
-    guard let tokens = try? lexer.lex() else {
-        print("Lexing failed, but I don't know why")
-        return
-    }
     
     do {
-//        let tokens = try lexer.lex()
+        let tokens = try lexer.lex()
         print("Lexer output: \(tokens)")
         
         let parser = Parser(tokens: tokens)
