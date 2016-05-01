@@ -5,6 +5,7 @@ import Cocoa
 enum Token {
     case Number(Int)
     case Plus
+    case Minus
 }
 
 
@@ -68,6 +69,9 @@ class Lexer {
                 case "+":
                     tokens.append(.Plus)
                     advance()
+                case "-":
+                    tokens.append(.Minus)
+                    advance()
                 case " ":
                     // just advance to ignore spaces
                     advance()
@@ -113,6 +117,8 @@ class Parser {
             return value
         case.Plus:
             throw Error.InvalidToken(token)
+        case.Minus:
+            throw Error.InvalidToken(token)
         }
     }
     
@@ -128,6 +134,12 @@ class Parser {
                 // After a plus, we must get another number
                 let nextNumber = try getNumber()
                 value += nextNumber
+                
+            // Getting a minus after a number is legal
+            case .Minus:
+                // After a minus, we must get another number
+                let nextNumber = try getNumber()
+                value -= nextNumber
             
             // Getting a Number after a Number is not legal
             case .Number:
@@ -168,4 +180,5 @@ func evaluate(input: String) {
 
 evaluate("10 + 8 + 5 + 9")
 evaluate("10 + 8 + 5 + abcdef")
+evaluate("10 + 5 - 3 - 1")
 
