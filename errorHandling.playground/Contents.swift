@@ -56,20 +56,25 @@ class Lexer {
         return value
     }
     
-    func lex() throws -> [Token] {
+    var tokenIndex = [Int]()
+    
+    func lex() throws -> ([Token], [Int]) {
         var tokens = [Token]()
         
         while let nextCharacter = peek() {
             switch nextCharacter {
                 case "0" ... "9":
                     // Start of a number - need to grab the rest
+                    tokenIndex.append(Int(String(position))!)
                     let value = getNumber()
                     tokens.append(.Number(value))
                 
                 case "+":
+                    tokenIndex.append(Int(String(position))!)
                     tokens.append(.Plus)
                     advance()
                 case "-":
+                    tokenIndex.append(Int(String(position))!)
                     tokens.append(.Minus)
                     advance()
                 case " ":
@@ -78,10 +83,10 @@ class Lexer {
                 
                 default:
                     // Something unexpected - need to send back an error
-                    throw Error.InvalidCharacter(nextCharacter)
+                    throw Error.InvalidCharacter(nextCharacter, position)
             }
         }
-        return tokens
+        return (tokens, tokenIndex)
     }
     
 }
@@ -89,22 +94,28 @@ class Lexer {
 class Parser {
     enum Error: ErrorType {
         case UnexpectedEndOfInput
-        case InvalidToken(Token)
+        case InvalidToken(Token, Int)
     }
     
     
     let tokens: [Token]
+    let tokenIndex: [Int]
     var position = 0
+    var tokenCounter = 0
     
-    init(tokens: [Token]) {
+    init(tokens: [Token], tokenIndex: [Int]) {
         self.tokens = tokens
+        self.tokenIndex = tokenIndex
     }
     
     func getNextToken() -> Token? {
         guard position < tokens.count else {
             return nil
         }
-        return tokens[position++]
+        tokenCounter += 1
+        let returnToken = tokens[position]
+        position += 1
+        return returnToken
     }
     
     func getNumber() throws -> Int {
@@ -115,10 +126,8 @@ class Parser {
         switch token {
         case.Number(let value):
             return value
-        case.Plus:
-            throw Error.InvalidToken(token)
-        case.Minus:
-            throw Error.InvalidToken(token)
+        case.Plus, .Minus:
+            throw Error.InvalidToken(token, tokenIndex[tokenCounter - 1])
         }
     }
     
@@ -143,7 +152,7 @@ class Parser {
             
             // Getting a Number after a Number is not legal
             case .Number:
-                throw Error.InvalidToken(token)
+                throw Error.InvalidToken(token, tokenIndex[tokenCounter - 1])
                 
             }
         }
@@ -161,18 +170,18 @@ func evaluate(input: String) {
     let lexer = Lexer(input: input)
     
     do {
-        let tokens = try lexer.lex()
+        let (tokens, tokenIndex) = try lexer.lex()
         print("Lexer output: \(tokens)")
         
-        let parser = Parser(tokens: tokens)
+        let parser = Parser(tokens: tokens, tokenIndex: tokenIndex)
         let result = try parser.parse()
         print("Parser output: \(result)")
-    } catch Lexer.Error.InvalidCharacter(let character) {
-        print("Input contained an invalid character: \(character)")
+    } catch Lexer.Error.InvalidCharacter(let (character, index)) {
+        print("Input contained an invalid character at index: \(index), \(character)")
     } catch Parser.Error.UnexpectedEndOfInput {
         print("Unexpected end of input during parsing")
-    } catch Parser.Error.InvalidToken(let token) {
-        print("invalid token during parsing: \(token)")
+    } catch Parser.Error.InvalidToken(let (token, index)) {
+        print("invalid token during parsing at: \(index), \(token)")
     } catch {
         print("An error occured: \(error)")
     }
