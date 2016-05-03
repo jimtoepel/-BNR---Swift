@@ -181,4 +181,5 @@ func evaluate(input: String) {
 evaluate("10 + 8 + 5 + 9")
 evaluate("10 + 8 + 5 + abcdef")
 evaluate("10 + 5 - 3 - 1")
-
+evaluate("1 + 3 + 7a + 8")
+evaluate("10 + 3 3 + 7")
