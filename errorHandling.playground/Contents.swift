@@ -11,11 +11,12 @@ enum Token {
 class Lexer {
     
     enum Error: ErrorType {
-        case InvalidCharacter(Character)
+        case InvalidCharacter(Character, [Int])
     }
     
     let input: String.CharacterView
     var position: String.CharacterView.Index
+    var tokenIndex = [Int]()
     
     
     init(input: String) {
@@ -61,21 +62,24 @@ class Lexer {
     }
     
     
-    func lex() throws -> [Token] {
+    func lex() throws -> ([Token], [Int]) {
         var tokens = [Token]()
         
         while let nextCharacter = peek() {
             switch nextCharacter {
             case "0" ... "9":
                 // Start of a number - need to grab the rest
+                tokenIndex.append(Int(String(position))!)
                 let value = getNumber()
                 tokens.append(.Number(value))
             
             case "+":
+                tokenIndex.append(Int(String(position))!)
                 tokens.append(.Plus)
                 advance()
                 
             case "-":
+                tokenIndex.append(Int(String(position))!)
                 tokens.append(.Minus)
                 advance()
                 
@@ -86,11 +90,11 @@ class Lexer {
             default:
                 // something happened. Errors go here
                 
-                throw Error.InvalidCharacter(nextCharacter)
+                throw Error.InvalidCharacter(nextCharacter, tokenIndex)
             }
         }
         
-        return tokens
+        return (tokens, tokenIndex)
         
     }
     
@@ -100,22 +104,28 @@ class Lexer {
 class Parser {
     enum Error: ErrorType {
         case UnexpectedEndOfInput
-        case InvalidToken(Token)
+        case InvalidToken(Token, Int)
     }
     
     
     let tokens: [Token]
+    let tokenIndex: [Int]
+    var tokenCounter = 0
     var position = 0
     
-    init(tokens: [Token]) {
+    init(tokens: [Token], tokenIndex: [Int]) {
         self.tokens = tokens
+        self.tokenIndex = tokenIndex
     }
     
     func getNextToken() -> Token? {
         guard position < tokens.count else {
             return nil
         }
-        return tokens[position++]
+        tokenCounter += 1
+        let returnToken = tokens[position]
+        position += 1
+        return returnToken
     }
     
     func getNumber() throws -> Int {
@@ -126,8 +136,9 @@ class Parser {
         switch token {
         case .Number(let value):
             return value
+            
         case .Plus, .Minus:
-            throw Error.InvalidToken(token)
+            throw Error.InvalidToken(token, tokenIndex[tokenCounter - 1])
         }
     }
     
@@ -153,7 +164,7 @@ class Parser {
                 
             // Getting a number is uncool
             case .Number:
-                throw Error.InvalidToken(token)
+                throw Error.InvalidToken(token, tokenIndex[tokenCounter - 1])
             }
         }
         
@@ -168,22 +179,22 @@ func evaluate(input: String) {
     let lexer = Lexer(input: input)
     
     do {
-        let tokens = try lexer.lex()
+        let (tokens, tokenIndex) = try lexer.lex()
         print("Lexer output: \(tokens)")
         
-        let parser = Parser(tokens: tokens)
+        let parser = Parser(tokens: tokens, tokenIndex: tokenIndex)
         let result = try parser.parse()
         print("Parser output: \(result)")
-    } catch Lexer.Error.InvalidCharacter(let character){
-        print("Input contained an invalid character: \(character)")
+    } catch Lexer.Error.InvalidCharacter(let (character, index)) {
+        print("Input contained an invalid character at index: \(index): \(character)")
     } catch Parser.Error.UnexpectedEndOfInput {
         print("Unexpected end of input during parsing")
-    } catch Parser.Error.InvalidToken(let token) {
-        print("Invalid token during parsing: \(token)")
+    } catch Parser.Error.InvalidToken(let (token, index)) {
+        print("Invalid token at index \(index) during parsing: \(token)")
     } catch {
         print("An error occured: \(error)")
     }
 }
 
-evaluate("11 + 3 + 5 - 4")
+evaluate("11 + 3 + 5 - g")
 
