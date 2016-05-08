@@ -196,5 +196,5 @@ func evaluate(input: String) {
     }
 }
 
-evaluate("11 + 3 + 5 - g")
+evaluate("3 x 3 + 3 + 5 - 9")
 
