@@ -13,7 +13,7 @@ extension Velocity {
 protocol VehicleType {
     var topSpeed: Velocity { get }
     var numberOfDoors: Int { get }
-    var hasFlatBed: Bool { get }
+    var hasFlatbed: Bool { get }
 }
 
 
@@ -29,3 +29,22 @@ struct Car {
         }
     }
 }
+
+extension Car: VehicleType {
+    var topSpeed: Velocity { return 180 }
+    var numberOfDoors: Int { return 4}
+    var hasFlatbed: Bool { return false }
+}
+
+extension Car {
+    init(carMake: String, carModel: String, carYear: Int) {
+        self.init(make: carMake,
+                  model: carModel,
+                  year: carYear,
+                  color: "Black",
+                  nickname: "N/A",
+                  gasLevel: 1.0)
+    }
+}
+
+var c = Car(carMake: "Ford", carModel: "Fusion", carYear: 2013)
