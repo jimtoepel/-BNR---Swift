@@ -23,6 +23,7 @@ struct Car {
     let year: Int
     let color: String
     let nickname:String
+    let numberOfDoors = 4
     var gasLevel: Double {
         willSet {
             precondition(newValue <= 1.0 && newValue >= 0.0, "New value must be between 0 and 1.")
@@ -32,7 +33,7 @@ struct Car {
 
 extension Car: VehicleType {
     var topSpeed: Velocity { return 180 }
-    var numberOfDoors: Int { return 4}
+//    var numberOfDoors: Int { return 4}
     var hasFlatbed: Bool { return false }
 }
 
@@ -73,7 +74,6 @@ extension Car {
 
 c.kind.description
 
-
 extension Car {
     mutating func emptyGas(amount: Double) {
         precondition(amount <= 1 && amount > 0, "Amount to remove must be beteen 0 and 1.")
@@ -98,5 +98,6 @@ extension Int {
 5.timesFive
 1.timesFive
 100.timesFive
+
 
 
