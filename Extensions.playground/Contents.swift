@@ -77,7 +77,11 @@ c.kind.description
 extension Car {
     mutating func emptyGas(amount: Double) {
         precondition(amount <= 1 && amount > 0, "Amount to remove must be beteen 0 and 1.")
-        gasLevel -= amount
+        if gasLevel <= amount {
+            gasLevel = 0.0
+        } else {
+            gasLevel -= amount
+        }
     }
     
     mutating func fillGas() {
@@ -85,8 +89,13 @@ extension Car {
     }
 }
 
-c.emptyGas(0.3)
+c.emptyGas(0.4)
 c.gasLevel
+c.emptyGas(0.4)
+c.gasLevel
+c.emptyGas(0.7)
+c.gasLevel
+
 c.fillGas()
 c.gasLevel
 
