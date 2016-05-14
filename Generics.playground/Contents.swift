@@ -36,3 +36,16 @@ stringStack.push("another string")
 
 print(stringStack.pop())
 
+
+
+func myMap<T, U>(items: [T], f: (T) -> (U)) -> [U] {
+    var result = [U]()
+    for item in items {
+        result.append(f(item))
+    }
+    return result
+}
+
+let strings = [ "one", "two", "three"]
+let stringLengths = myMap(strings) { $0.characters.count }
+print(stringLengths) // Prints [ 3, 3, 5]
