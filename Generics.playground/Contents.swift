@@ -15,6 +15,14 @@ struct Stack<Element> {
         }
         return items.removeLast()
     }
+    
+    func map<U>(f: Element -> U) -> Stack<U> {
+        var mappedItems = [U]()
+        for item in items {
+            mappedItems.append(f(item))
+        }
+        return Stack<U>(items: mappedItems)
+    }
 }
 
 
@@ -24,11 +32,14 @@ var intStack = Stack<Int>()
 
 intStack.push(1)
 intStack.push(2)
+var doubledStack = intStack.map({ 2 * $0})
 
-print(intStack.pop())
-print(intStack.pop())
-print(intStack.pop())
+print(intStack.pop()) // Prints optional (2)
+print(intStack.pop()) // Prints optional (1)
+print(intStack.pop()) // Prints optional nil
 
+print(doubledStack.pop())  // Prints optional (4)
+print(doubledStack.pop())  // Prints optional (2)
 
 var stringStack = Stack<String>()
 stringStack.push("this is a string")
