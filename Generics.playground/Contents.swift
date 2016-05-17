@@ -12,7 +12,7 @@ struct StackGenerator<T>: GeneratorType {
 }
 
 
-struct Stack<Element> {
+struct Stack<Element>: SequenceType {
     var items = [Element]()
     
     mutating func push(newItem: Element) {
@@ -32,6 +32,10 @@ struct Stack<Element> {
             mappedItems.append(f(item))
         }
         return Stack<U>(items: mappedItems)
+    }
+    
+    func generate() -> StackGenerator<Element> {
+        return StackGenerator(stack: self)
     }
 }
 
@@ -100,4 +104,29 @@ myStack.push(30)
 var myStackGenerator = StackGenerator(stack: myStack)
 while let value = myStackGenerator.next() {
     print("got \(value)")
+}
+
+for value in myStack {
+    print("for-in loop: got \(value)")
+}
+
+
+func pushItemsOntoStack<Element, S: SequenceType where S.Generator.Element == Element>(inout stack: Stack<Element>, fromSequence sequence: S) {
+    for item in sequence {
+        stack.push(item)
+    }
+}
+
+
+pushItemsOntoStack(&myStack, fromSequence: [1, 2, 3])
+for value in myStack {
+    print("after pushing: got \(value)")
+}
+
+
+var myOtherStack = Stack<Int> ()
+pushItemsOntoStack(&myOtherStack, fromSequence: [1, 2, 3])
+pushItemsOntoStack(&myStack, fromSequence: myOtherStack)
+for value in myStack {
+    print("after pushing items onto stack, got \(value)")
 }
