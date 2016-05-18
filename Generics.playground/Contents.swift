@@ -37,6 +37,20 @@ struct Stack<Element>: SequenceType {
     func generate() -> StackGenerator<Element> {
         return StackGenerator(stack: self)
     }
+    
+    // Bronze Challenge
+    func filter(f: Element -> Bool) -> Stack<Element> {
+        var filteredItems = Stack<Element>()
+        
+        // Stack
+        for item in self {
+            if f(item) {
+                filteredItems.push(item)
+            }
+        }
+        return filteredItems
+    }
+    
 }
 
 
@@ -129,4 +143,16 @@ pushItemsOntoStack(&myOtherStack, fromSequence: [1, 2, 3])
 pushItemsOntoStack(&myStack, fromSequence: myOtherStack)
 for value in myStack {
     print("after pushing items onto stack, got \(value)")
+}
+
+
+// Make a stack of doubles
+var someStack = Stack<Double>()
+pushItemsOntoStack(&someStack, fromSequence: [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0])
+
+// Filter it for evens
+let evensStack = someStack.filter { $0 % 2 == 0 }
+// Print it Out
+for value in evensStack {
+    print(value)
 }
