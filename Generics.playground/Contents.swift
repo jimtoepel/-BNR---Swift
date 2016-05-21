@@ -156,3 +156,18 @@ let evensStack = someStack.filter { $0 % 2 == 0 }
 for value in evensStack {
     print(value)
 }
+
+
+func findAll<T: Equatable, C: CollectionType where C.Generator.Element == T>(items: C, element: T) -> [C.Index] {
+    var result = Array<C.Index>()
+    for idx in items.startIndex..<items.endIndex {
+        if items[idx] == element { result.append(idx) }
+    }
+    return result
+}
+
+let intArray = [1, 2, 3, 4, 5, 3, 2, 1]
+// Result : [1, 6]
+
+let anotherIntArray = findAll(intArray, element: 2)
+let anotherArray = findAll(["a", "b", "c", "A", "a"], element: "a")
