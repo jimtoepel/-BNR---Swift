@@ -39,8 +39,8 @@ class Person: CustomStringConvertible {
     }
     
     func loseOwnershipOfAsset(asset:Asset) {
-        asset.owner = self
-        personalAssets.removeLast()
+        asset.owner = nil
+        personalAssets = personalAssets.filter({ $0.name != asset.name})
         accountant.lostAsset(asset)
         
     }
