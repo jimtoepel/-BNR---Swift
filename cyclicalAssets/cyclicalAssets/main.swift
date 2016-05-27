@@ -11,6 +11,8 @@ import Foundation
 var bob: Person? = Person(name: "Bob")
 print("created \(bob)")
 
+var rob: Person? = Person(name: "Rob")
+print("created \(rob)")
 
 var laptop: Asset? = Asset(name: "Macbookly", value: 1500.00)
 var hat: Asset? = Asset(name: "Cowboy Hat", value: 175.00)
@@ -19,6 +21,8 @@ var backpack: Asset? = Asset(name: "Timbuk2 Messenger Bag", value:
 
 bob?.takeOwnershipOfAsset(laptop!)
 bob?.takeOwnershipOfAsset(hat!)
+rob?.takeOwnershipOfAsset(laptop!)
+
 bob?.loseOwnershipOfAsset(hat!)
 
 print("While Bob is alive, hat's owner is \(hat!.owner)")
