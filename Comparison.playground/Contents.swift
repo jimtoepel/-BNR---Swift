@@ -12,7 +12,9 @@ func ==(lhs: Point, rhs: Point) -> Bool {
 }
 
 func <(lhs: Point, rhs: Point) -> Bool {
-    return(lhs.x < rhs.x) && (lhs.y < rhs.y)
+    let lhsDis = (sqrt((Double(lhs.x) * Double(lhs.x)) + (Double(lhs.y) * Double(lhs.y))))
+    let rhsDis = (sqrt((Double(rhs.x) * Double(rhs.x)) + (Double(rhs.y) * Double(rhs.y))))
+    return( lhsDis < rhsDis )
 }
 
 func +(lhs: Point, rhs: Point) -> Point {
@@ -37,5 +39,25 @@ let cGreatherThanEqualD = (c >= d)
 
 let e = a + b
 print (e)
+
+
+class Person: Equatable {
+    let name: String
+    var age: Int
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+
+
+func ==(lhs: Person, rhs: Person) -> Bool {
+    return (lhs.name == rhs.name) && (lhs.age == rhs.age)
+}
+
+let p1 = Person(name: "Joe", age: 35)
+let p2 = Person(name: "Stacy", age: 30)
+let people: Array = [p1, p2]
+let p1Index = people.indexOf(p2)
 
 
