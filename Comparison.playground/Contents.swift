@@ -41,23 +41,31 @@ let e = a + b
 print (e)
 
 
-class Person: Equatable {
+class Person {
     let name: String
-    var age: Int
-    init(name: String, age: Int) {
+    weak var spouse: Person?
+    init(name: String, spouse: Person?) {
         self.name = name
-        self.age = age
+        self.spouse = spouse
     }
 }
 
 
-func ==(lhs: Person, rhs: Person) -> Bool {
-    return (lhs.name == rhs.name) && (lhs.age == rhs.age)
+
+let matt = Person(name: "Matt", spouse: nil)
+let drew = Person(name: "Drew", spouse: nil)
+
+
+infix operator +++ {}
+
+func +++(lhs: Person, rhs: Person) {
+    lhs.spouse = rhs
+    rhs.spouse = lhs
 }
 
-let p1 = Person(name: "Joe", age: 35)
-let p2 = Person(name: "Stacy", age: 30)
-let people: Array = [p1, p2]
-let p1Index = people.indexOf(p2)
+
+matt +++ drew
+matt.spouse?.name
+drew.spouse?.name
 
 
