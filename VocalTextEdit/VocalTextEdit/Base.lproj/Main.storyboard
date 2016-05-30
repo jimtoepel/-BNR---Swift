@@ -673,27 +673,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kgO-ow-E0M">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kgO-ow-E0M">
                                 <rect key="frame" x="388" y="222" width="78" height="32"/>
                                 <buttonCell key="cell" type="push" title="Speak" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VOE-y8-O7y">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ji8-Ka-6uw">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ji8-Ka-6uw">
                                 <rect key="frame" x="319" y="222" width="69" height="32"/>
                                 <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zhh-ng-UFY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkc-ls-bmY">
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkc-ls-bmY">
                                 <rect key="frame" x="20" y="20" width="440" height="189"/>
-                                <clipView key="contentView" ambiguous="YES" id="kQG-5d-OVv">
+                                <clipView key="contentView" id="kQG-5d-OVv">
                                     <rect key="frame" x="1" y="1" width="438" height="187"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="5no-wz-JX8">
+                                        <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="5no-wz-JX8">
                                             <rect key="frame" x="0.0" y="0.0" width="438" height="187"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -716,6 +716,16 @@
                                 </scroller>
                             </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="jkc-ls-bmY" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" constant="20" id="4DO-rJ-tMa"/>
+                            <constraint firstItem="kgO-ow-E0M" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="20" id="EX1-KJ-84P"/>
+                            <constraint firstAttribute="trailing" secondItem="jkc-ls-bmY" secondAttribute="trailing" constant="20" id="PWg-ug-gdy"/>
+                            <constraint firstAttribute="trailing" secondItem="kgO-ow-E0M" secondAttribute="trailing" constant="20" id="USH-VX-rhz"/>
+                            <constraint firstItem="jkc-ls-bmY" firstAttribute="top" secondItem="kgO-ow-E0M" secondAttribute="bottom" constant="20" id="cBI-k2-lMq"/>
+                            <constraint firstAttribute="bottom" secondItem="jkc-ls-bmY" secondAttribute="bottom" constant="20" id="eBL-6g-8td"/>
+                            <constraint firstItem="kgO-ow-E0M" firstAttribute="leading" secondItem="Ji8-Ka-6uw" secondAttribute="trailing" constant="12" id="x5S-7w-t4l"/>
+                            <constraint firstItem="Ji8-Ka-6uw" firstAttribute="baseline" secondItem="kgO-ow-E0M" secondAttribute="baseline" id="zP9-IP-aTX"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
