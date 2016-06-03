@@ -30,13 +30,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F0M-Si-rNl">
+                                <rect key="frame" x="0.0" y="69" width="600" height="531"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="F0M-Si-rNl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="6vO-HK-Zah"/>
                             <constraint firstItem="enJ-AI-163" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="9GA-ji-ChB"/>
                             <constraint firstItem="enJ-AI-163" firstAttribute="leading" secondItem="H2u-KT-drk" secondAttribute="trailing" constant="8" symbolic="YES" id="Ei3-al-Heu"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="F0M-Si-rNl" secondAttribute="bottom" id="HF0-st-V16"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F0M-Si-rNl" secondAttribute="trailing" constant="-20" id="IB4-Yt-d4m"/>
                             <constraint firstItem="H2u-KT-drk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ch1-nN-bWT"/>
                             <constraint firstItem="H2u-KT-drk" firstAttribute="top" secondItem="enJ-AI-163" secondAttribute="top" id="eMx-dg-otq"/>
+                            <constraint firstItem="F0M-Si-rNl" firstAttribute="top" secondItem="H2u-KT-drk" secondAttribute="bottom" constant="19" id="muD-f3-Kha"/>
                             <constraint firstItem="H2u-KT-drk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="nRK-bE-b2P"/>
                             <constraint firstItem="H2u-KT-drk" firstAttribute="baseline" secondItem="enJ-AI-163" secondAttribute="baseline" id="sb0-fe-moW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="enJ-AI-163" secondAttribute="trailing" constant="3" id="zyt-Ek-Q7a"/>
