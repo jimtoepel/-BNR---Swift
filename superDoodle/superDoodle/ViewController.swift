@@ -12,10 +12,14 @@ class ViewController: UIViewController {
     
     @IBOutlet var itemTextField: UITextField!
     @IBOutlet var tableView: UITableView!
+    
+    let todoList = TodoList ()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.dataSource = todoList
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,7 +28,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addButtonPressed(sender: UIButton) {
-        print("Add to-do item: \(itemTextField.text)")
+        guard let text = itemTextField.text else {
+            return
+        }
+        todoList.addItem(text)
+        tableView.reloadData()
     }
 
 
