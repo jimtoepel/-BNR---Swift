@@ -24,6 +24,9 @@
                                     <constraint firstAttribute="width" constant="40" id="Q3J-bZ-Q00"/>
                                 </constraints>
                                 <state key="normal" title="Insert"/>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fxE-pk-dqu"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="To-Do Item" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H2u-KT-drk">
                                 <rect key="frame" x="20" y="20" width="509" height="30"/>
@@ -50,6 +53,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="enJ-AI-163" secondAttribute="trailing" constant="3" id="zyt-Ek-Q7a"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="itemTextField" destination="H2u-KT-drk" id="usV-7b-E6t"/>
+                        <outlet property="tableView" destination="F0M-Si-rNl" id="gp0-i8-aE2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
