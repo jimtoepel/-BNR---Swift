@@ -16,6 +16,7 @@ class TodoList: NSObject {
     }()
 
     private var items: [String] = []
+
     
     override init() {
         super.init()
@@ -47,12 +48,18 @@ class TodoList: NSObject {
 }
 
 extension TodoList: UITableViewDataSource {
+    
+    
+    var getCellInfo: (cellClass: AnyClass, reuseIdentifier: String) {
+        return (UITableViewCell.self, "Cell")
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(getCellInfo.reuseIdentifier, forIndexPath: indexPath)
         let item = items[indexPath.row]
         cell.textLabel!.text = item
         

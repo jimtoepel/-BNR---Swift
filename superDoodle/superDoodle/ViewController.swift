@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        let cellInfo = todoList.getCellInfo
+        tableView.registerClass(cellInfo.cellClass, forCellReuseIdentifier: cellInfo.reuseIdentifier)
         tableView.dataSource = todoList
     }
 
