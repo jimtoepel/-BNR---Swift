@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B15F44831D10ADC700C0CDA7 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F44821D10ADC700C0CDA7 /* Contact.swift */; };
 		B1E0597A1D0BCD3E008FB6F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E059791D0BCD3E008FB6F9 /* main.m */; };
 		B1E0597D1D0BCD3E008FB6F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E0597C1D0BCD3E008FB6F9 /* AppDelegate.m */; };
 		B1E059801D0BCD3E008FB6F9 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E0597F1D0BCD3E008FB6F9 /* ContactsViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B15F44811D10ADC500C0CDA7 /* Contacts-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Contacts-Bridging-Header.h"; sourceTree = "<group>"; };
+		B15F44821D10ADC700C0CDA7 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		B1E059751D0BCD3D008FB6F9 /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E059791D0BCD3E008FB6F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1E0597B1D0BCD3E008FB6F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,10 +89,12 @@
 				B1E0597E1D0BCD3E008FB6F9 /* ContactsViewController.h */,
 				B1E0597F1D0BCD3E008FB6F9 /* ContactsViewController.m */,
 				B1E059811D0BCD3E008FB6F9 /* Main.storyboard */,
+				B15F44821D10ADC700C0CDA7 /* Contact.swift */,
 				B1E059841D0BCD3E008FB6F9 /* Assets.xcassets */,
 				B1E059861D0BCD3E008FB6F9 /* LaunchScreen.storyboard */,
 				B1E059891D0BCD3E008FB6F9 /* Info.plist */,
 				B1E059781D0BCD3D008FB6F9 /* Supporting Files */,
+				B15F44811D10ADC500C0CDA7 /* Contacts-Bridging-Header.h */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B15F44831D10ADC700C0CDA7 /* Contact.swift in Sources */,
 				B1E059801D0BCD3E008FB6F9 /* ContactsViewController.m in Sources */,
 				B1E0597D1D0BCD3E008FB6F9 /* AppDelegate.m in Sources */,
 				B1E0597A1D0BCD3E008FB6F9 /* main.m in Sources */,
@@ -341,10 +347,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Contacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = funderDevelopment.Contacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Contacts/Contacts-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -352,10 +361,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Contacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = funderDevelopment.Contacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Contacts/Contacts-Bridging-Header.h";
 			};
 			name = Release;
 		};
